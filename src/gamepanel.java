@@ -13,40 +13,51 @@ public class gamepanel extends JPanel {
     //         { null, null, null, null } };
 
     Random r = new Random();
-    private int[] basex={4,5,3,4},basey={0,0,1,1};
-    private int[][]
+    private int[] differencex = new int[4],difference = new int[4];
+    private int[][][]
                     allshapesx={
-                                {4,5,4,5},
-                                {3,4,5,6},
-                                {4,5,3,4},
-                                {3,4,4,5},
-                                {5,3,4,5},
-                                {3,3,4,5},
-                                {4,3,4,5}
+                                {{4,5,4,5},{4,5,4,5},{4,5,4,5},{4,5,4,5}},
+                                {{3,4,5,6},{4,4,4,4},{3,4,5,6},{4,4,4,4}},
+                                {{4,5,3,4},{4,4,5,5},{4,5,3,4},{4,4,5,5}},
+                                {{3,4,4,5},{4,3,4,3},{3,4,4,5},{4,3,4,3}},
+                                {{5,3,4,5},{4,4,4,5},{3,4,5,3},{4,5,5,5}},
+                                {{3,3,4,5},{4,5,4,4},{3,4,5,5},{5,5,4,5}},
+                                {{4,3,4,5},{4,4,5,4},{3,4,5,4},{5,4,5,5}}
                     },
                     allshapesy={
-                                {0,0,1,1},
-                                {0,0,0,0},
-                                {0,0,1,1},
-                                {0,0,1,1},
-                                {0,1,1,1},
-                                {0,1,1,1},
-                                {0,1,1,1}
+                                {{0,0,1,1},{0,0,1,1},{0,0,1,1},{0,0,1,1}},
+                                {{0,0,0,0},{0,1,2,3},{0,0,0,0},{0,1,2,3}},
+                                {{0,0,1,1},{0,1,1,2},{0,0,1,1},{0,1,1,2}},
+                                {{0,0,1,1},{0,1,1,2},{0,0,1,1},{0,1,1,2}},
+                                {{0,1,1,1},{0,1,2,2},{0,0,0,1},{0,0,1,2}},
+                                {{0,1,1,1},{0,1,2,2},{0,0,0,1},{0,1,2,2}},
+                                {{0,1,1,1},{0,1,1,2},{0,0,0,1},{0,1,1,2}}
                     };
 
     private int sblockx[] = { 4, 5, 3, 4 }, sblocky[] = { 0, 0, 1, 1 };
     private boolean move = true,lose;
     private int nowshape,nextshape;
+    public int rotation = 0;
 
     // ArrayList<Integer> sblocky = new ArrayList<Integer>(2);
     // ArrayList<Integer> sblockx = new ArrayList<Integer>(4);
 
     public gamepanel() {
-                owncolor = new Color(r.nextInt(0,255),r.nextInt(0,255),r.nextInt(0,255));
+        owncolor = new Color(r.nextInt(0,255),r.nextInt(0,255),r.nextInt(0,255));
         initialpanelcolor();
         setcolorsarray();
         setBounds(0, 0, 400, 600);
         setBackground(Color.black);
+    }
+
+    public void rotateshape(){
+        for(int i = 0; i<4; i++){
+
+
+
+            sblockx[i]=allshapesx[nowshape][rotation][i];
+            sblocky[i]=allshapesy[nowshape][rotation][i];
+        }
     }
 
     private void initialpanelcolor() {
@@ -99,7 +110,7 @@ public class gamepanel extends JPanel {
 
     private void createblock() {
         for(int i =0 ; i<4; i++){
-            if(sblocky[i]==basey[i] && allcolor[sblocky[i]][sblockx[i]]!=Color.black){
+            if(sblocky[i]==allshapesy[nowshape][rotation][i] && allcolor[sblocky[i]][sblockx[i]]!=Color.black){
                 lose=true;
             }else{
                 lose=false;
@@ -112,8 +123,8 @@ public class gamepanel extends JPanel {
         owncolor = new Color(r.nextInt(0,255),r.nextInt(0,255),r.nextInt(0,255));
         nowshape=r.nextInt(0,7);
         for(int i = 0; i<4; i++){
-            sblockx[i]=allshapesx[nowshape][i];
-            sblocky[i]=allshapesy[nowshape][i];
+            sblockx[i]=allshapesx[nowshape][rotation][i];
+            sblocky[i]=allshapesy[nowshape][rotation][i];
         }
         move=true;
     }
