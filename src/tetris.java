@@ -27,6 +27,9 @@ public class tetris implements KeyListener {
 
         f.add(controls);
         f.add(game);
+        f.getContentPane().add(controls);
+        f.getContentPane().add(game);
+        
         game.gameloop();
     }
 

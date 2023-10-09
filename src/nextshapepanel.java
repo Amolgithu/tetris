@@ -8,12 +8,12 @@ public class nextshapepanel extends JPanel{
     private Color allcolor[][] = new Color[4][4];
 
     public nextshapepanel(){
-        setColor();
+        setcolor();
         setBounds(20, 20, 160, 160);
         setBackground(Color.red);  
     }
 
-    private void setColor() {
+    private void setcolor() {
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 4; i++){
             //to do

@@ -137,6 +137,8 @@ public class gamepanel extends JPanel {
                 moveshape();
             }
 
+            System.out.println("running");
+
             if (move == false) {
                 remove=true;
                 createblock();
