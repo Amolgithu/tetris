@@ -11,22 +11,35 @@ public class nextshapepanel extends JPanel{
     public nextshapepanel(){        
         setBounds(20, 20, 160, 160);
         setBackground(Color.red);  
-        setcolor();
+        // setcolor();
     }
     
-    private void setcolor() {
-        System.out.println("nextshape");
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
-            //to do
-            }
-        }
-    }
+    // private void setcolor() {
+    //     System.out.println("nextshape");
+        
+    // }
+
+    
 
     @Override
     protected void paintComponent(Graphics g) {
         // TODO Auto-generated method stub
         super.paintComponent(g);
 
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                g.setColor(allcolor[i][j]);
+                g.fillRect(i*40, i*40, j*40, j*40);
+            }
+        }
+
+    }
+
+    public void setcolorandshape(int shapex[],int shapey[],Color c) {
+        
+        for(int i = 0; i < 4; i++){
+            allcolor[shapey[i]+1][shapex[i]-3]=c;
+        }
+        repaint();
     }
 }

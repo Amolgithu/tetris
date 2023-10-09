@@ -12,7 +12,7 @@ public class gamepanel extends JPanel {
     // private Color sblock[][] = { { null, Color.red, Color.red, null },
     // { Color.red, Color.red, null, null },
     // { null, null, null, null } };
-
+    public nextshapepanel nextshapeshow;
     Random r = new Random();
 
     // private int[] differencex = new int[4], difference = new int[4];
@@ -45,16 +45,24 @@ public class gamepanel extends JPanel {
     // ArrayList<Integer> sblockx = new ArrayList<Integer>(4);
 
     public gamepanel() {
+        nextshapeshow = new nextshapepanel();
         nowshape = r.nextInt(0, 7);
         nextshape= r.nextInt(0, 7);
         
         owncolor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
         nextshapeColor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
+        
+        setnextshape();
+        
         initialpanelcolor();
         setshape();
         setcolorsarray();
         setBounds(0, 0, 400, 600);
         setBackground(Color.black);
+    }
+
+    private void setnextshape() {
+         nextshapeshow.setcolorandshape(allshapesx[nextshape][rotation],allshapesy[nextshape][rotation],nextshapeColor);
     }
 
     private void setshape() {
@@ -212,6 +220,7 @@ public class gamepanel extends JPanel {
 
         nextshapeColor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
         nextshape = r.nextInt(0, 7);
+        setnextshape();
         for (int i = 0; i < 4; i++) {
             sblockx[i] = allshapesx[nowshape][rotation][i];
             sblocky[i] = allshapesy[nowshape][rotation][i];

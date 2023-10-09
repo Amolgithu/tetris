@@ -11,17 +11,18 @@ public class controlpanel extends JPanel{
     public controlpanel(){
         System.out.println("controlpanel");
         shape = new nextshapepanel();
+        setLayout(null);
         setBounds(401,0,200,600);
         setBackground(Color.gray);
         add(shape);
     }
-    @Override
-    protected void paintComponent(Graphics g) {
-        // TODO Auto-generated method stub
-        super.paintComponent(g);
-        g.setColor(Color.BLACK);
-        g.drawRect(0, 0, 199, 599);
-    }
+    // @Override
+    // protected void paintComponent(Graphics g) {
+    //     // TODO Auto-generated method stub
+    //     super.paintComponent(g);
+    //     g.setColor(Color.BLACK);
+    //     g.drawRect(0, 0, 199, 599);
+    // }
       
 
 }
