@@ -2,6 +2,7 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
 import javax.swing.JFrame;
 
 public class tetris implements KeyListener {
@@ -10,31 +11,36 @@ public class tetris implements KeyListener {
     private controlpanel controls;
 
     public tetris() {
+        System.out.println("yess 1");
         f = new JFrame("Tetris");
 
         f.setLayout(null);
         f.setSize(617, 639);
         f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setVisible(true);
+        System.out.println("yess 2");
         f.addKeyListener(this);
+        System.out.println("yess 3");
         setpanels();
-    }
-
-    private void setpanels() {
-        game = new gamepanel();
-        controls = new controlpanel();
-
-        f.add(controls);
-        f.add(game);
-        f.getContentPane().add(controls);
-        f.getContentPane().add(game);
-        
+        System.out.println("yess 4");
+        f.setVisible(true);
         game.gameloop();
     }
 
+    private void setpanels() {
+        
+        game = new gamepanel();
+        controls = new controlpanel();
+        System.out.println("setpanels 1");
+
+        f.add(controls);
+        f.add(game);
+        // f.getContentPane().add(controls);
+        // f.getContentPane().add(game);
+    }
+
     public static void main(String[] args) {
-        new tetris();
+        tetris t =new tetris();
     }
 
     @Override

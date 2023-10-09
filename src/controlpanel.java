@@ -1,11 +1,16 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
+
 import javax.swing.JPanel;
 
 public class controlpanel extends JPanel{
-    nextshapepanel shape = new nextshapepanel();
+
+    nextshapepanel shape;
+
     public controlpanel(){
+        System.out.println("controlpanel");
+        shape = new nextshapepanel();
         setBounds(401,0,200,600);
         setBackground(Color.gray);
         add(shape);
