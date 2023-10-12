@@ -202,7 +202,7 @@ public class gamepanel extends JPanel {
     }
 
     private void redraw() {
-        if (!pausegame) {
+        if (pausegame==false) {
             repaint();
         }
 
@@ -279,7 +279,7 @@ public class gamepanel extends JPanel {
 
     private void moveshape() {
 
-        if (!pausegame) {
+        if (pausegame==false) {
             clearpreviousshape();
             for (int i = 0; i < 4; i++) {
                 sblocky[i] += 1;
@@ -343,7 +343,7 @@ public class gamepanel extends JPanel {
 
     public void moveright() {
         difofx = smallestone(sblockx) - allshapesx[nowshape][rotation][4];
-        if (!pausegame) {
+        if (pausegame==false) {
             clearpreviousshape();
             if (biggestone(sblockx) < 9 && checkthenextposition(1)) {
                 for (int i = 0; i < 4; i++) {
@@ -369,7 +369,7 @@ public class gamepanel extends JPanel {
     public void moveleft() {
 
         difofx = smallestone(sblockx) - allshapesx[nowshape][rotation][4];
-        if (!pausegame) {
+        if (pausegame==false) {
             clearpreviousshape();
             if (smallestone(sblockx) > 0 && checkthenextposition(-1)) {
                 for (int i = 0; i < 4; i++) {
