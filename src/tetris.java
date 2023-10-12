@@ -1,11 +1,13 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 
 import javax.swing.JFrame;
 
-public class tetris implements KeyListener {
+public class tetris implements KeyListener, ActionListener{
     private JFrame f;
     private gamepanel game;
     private controlpanel controls;
@@ -29,8 +31,7 @@ public class tetris implements KeyListener {
 
     private void setpanels() {
         
-        game = new gamepanel();
-        controls = new controlpanel();
+        game = new gamepanel(this);
         System.out.println("setpanels 1");
 
         // f.add(controls);
@@ -84,5 +85,27 @@ public class tetris implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==game.newgame){
+            game=new gamepanel(null);
+        }
+        else if(e.getSource()==game.pause){
+            game.pausegame=true;
+            game.pause.setVisible(false);
+            game.resume.setVisible(true);
+        }
+        else if(e.getSource()==game.resume){
+            game.pausegame=false;
+            game.resume.setVisible(false);
+            game.pause.setVisible(true);
+        }
+        else if(e.getSource()==game.exitbutton){
+            System.exit(0);
+        }
+        else{
+        }
     }
 }

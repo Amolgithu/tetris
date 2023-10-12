@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.util.Random;
 import java.util.Vector;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class gamepanel extends JPanel {
@@ -13,7 +14,9 @@ public class gamepanel extends JPanel {
     // { null, null, null, null } };.
     public Color allcolornextshape[][] = new Color[4][4];
     public nextshapepanel nextshapeshow;
+    public controlpanel cp;
     Random r = new Random();
+    public JButton newgame, pause, exitbutton, resume;
 
     // private int[] differencex = new int[4], difference = new int[4];
     public int[][][] allshapesx = {
@@ -38,15 +41,18 @@ public class gamepanel extends JPanel {
     private int sblockx[] = new int[4], sblocky[] = new int[4];
     // private int sblockx[] = { 4, 5, 3, 4 }, sblocky[] = { 0, 0, 1, 1 };
     private boolean move = true, lose, remove = true;
-    public boolean repaintnext = false;
+    public boolean repaintnext = false, pausegame = false;
     private int nowshape, nextshape, difofx = 0;
     public int rotation = 0, beforeroatation, maxy, score, speed = 500;
+    public tetris t;
 
     // ArrayList<Integer> sblocky = new ArrayList<Integer>(2);
     // ArrayList<Integer> sblockx = new ArrayList<Integer>(4);
 
-    public gamepanel() {
-        nextshapeshow = new nextshapepanel(new controlpanel());
+    public gamepanel(tetris t) {
+        this.t = t;
+        cp = new controlpanel(this, t);
+        nextshapeshow = new nextshapepanel();
         nowshape = r.nextInt(0, 7);
         nextshape = r.nextInt(0, 7);
 
@@ -58,6 +64,7 @@ public class gamepanel extends JPanel {
         initialpanelcolor();
         setshape();
         setcolorsarray();
+        setLayout(null);
         setBounds(0, 0, 600, 600);
         setBackground(Color.black);
     }
@@ -189,14 +196,21 @@ public class gamepanel extends JPanel {
 
             setcolorsarray();
 
-            repaint();
+            redraw();
 
         }
     }
 
+    private void redraw() {
+        if (!pausegame) {
+            repaint();
+        }
+
+    }
+
     private void checkScore() {
         boolean flag = false;
-        Vector<Integer> listofcomplet = new Vector<Integer>();
+        // Vector<Integer> listofcomplet = new Vector<Integer>();
 
         // for(int i = 14; i >0; i++){
         // for
@@ -213,7 +227,7 @@ public class gamepanel extends JPanel {
             }
             if (flag) {
                 shiftblocks(i);
-                i = 14;
+                i += 1;
             }
             flag = false;
         }
@@ -252,6 +266,7 @@ public class gamepanel extends JPanel {
         nextshapeColor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
         nextshape = r.nextInt(0, 7);
         setnextshape();
+        rotation = 0;
         for (int i = 0; i < 4; i++) {
             sblockx[i] = allshapesx[nowshape][rotation][i];
             sblocky[i] = allshapesy[nowshape][rotation][i];
@@ -259,15 +274,16 @@ public class gamepanel extends JPanel {
         }
         difofx = 0;
         move = true;
-        repaint();
+        redraw();
     }
 
     private void moveshape() {
 
-        clearpreviousshape();
-
-        for (int i = 0; i < 4; i++) {
-            sblocky[i] += 1;
+        if (!pausegame) {
+            clearpreviousshape();
+            for (int i = 0; i < 4; i++) {
+                sblocky[i] += 1;
+            }
         }
 
         maxy = biggestone(sblocky);
@@ -327,15 +343,12 @@ public class gamepanel extends JPanel {
 
     public void moveright() {
         difofx = smallestone(sblockx) - allshapesx[nowshape][rotation][4];
-        clearpreviousshape();
-        // if (biggestone(sblockx) < 9) {
-        // for (int i = 0; i < 4; i++) {
-        // sblockx[i] += 1;
-        // }
-        // }
-        if (biggestone(sblockx) < 9 && checkthenextposition(1)) {
-            for (int i = 0; i < 4; i++) {
-                sblockx[i] += 1;
+        if (!pausegame) {
+            clearpreviousshape();
+            if (biggestone(sblockx) < 9 && checkthenextposition(1)) {
+                for (int i = 0; i < 4; i++) {
+                    sblockx[i] += 1;
+                }
             }
         }
     }
@@ -356,10 +369,12 @@ public class gamepanel extends JPanel {
     public void moveleft() {
 
         difofx = smallestone(sblockx) - allshapesx[nowshape][rotation][4];
-        clearpreviousshape();
-        if (smallestone(sblockx) > 0 && checkthenextposition(-1)) {
-            for (int i = 0; i < 4; i++) {
-                sblockx[i] -= 1;
+        if (!pausegame) {
+            clearpreviousshape();
+            if (smallestone(sblockx) > 0 && checkthenextposition(-1)) {
+                for (int i = 0; i < 4; i++) {
+                    sblockx[i] -= 1;
+                }
             }
         }
 
