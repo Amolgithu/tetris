@@ -7,13 +7,25 @@ import javax.swing.JPanel;
 public class nextshapepanel extends JPanel{
 
     private Color allcolor[][] = new Color[4][4];
+    private controlpanel cpp;
 
-    public nextshapepanel(){        
+    public nextshapepanel(controlpanel cp){ 
+        cpp=cp;       
         setBounds(20, 20, 160, 160);
-        setBackground(Color.red);  
+        // setBackground(Color.red);  
         // setcolor();
+
+        // setcolortodefault();
+
     }
     
+    private void setcolortodefault(){
+        for(int i = 0; i<4;i++){
+            for(int j=0; j<4;j++){
+                allcolor[i][j]=Color.BLACK;
+            }
+        }
+    }
     // private void setcolor() {
     //     System.out.println("nextshape");
         
@@ -29,17 +41,32 @@ public class nextshapepanel extends JPanel{
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 4; j++){
                 g.setColor(allcolor[i][j]);
-                g.fillRect(i*40, i*40, j*40, j*40);
+                g.fillRect(j*40, i*40, 40,40);
+                // g.setColor(Color.orange);
+                // g.drawRect(i*40, j*40, 40, 40);
             }
         }
 
     }
 
-    public void setcolorandshape(int shapex[],int shapey[],Color c) {
+    public void setcolorandshape(int shapex[],int shapey[],Color c,int shape) {
+
+        System.out.println("shape : "+shape);
+        System.out.println("color: "+c);
+
+        // setcolortodefault();
         
         for(int i = 0; i < 4; i++){
-            allcolor[shapey[i]+1][shapex[i]-3]=c;
+
+            System.out.print(shapex[i]);
+            System.out.println(shapey[i]);
+
+            allcolor[shapey[i]][shapex[i]-3]=c;
+
+
+
         }
         repaint();
+        cpp.repaint();
     }
 }

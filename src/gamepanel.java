@@ -45,7 +45,7 @@ public class gamepanel extends JPanel {
     // ArrayList<Integer> sblockx = new ArrayList<Integer>(4);
 
     public gamepanel() {
-        nextshapeshow = new nextshapepanel();
+        nextshapeshow = new nextshapepanel(new controlpanel());
         nowshape = r.nextInt(0, 7);
         nextshape= r.nextInt(0, 7);
         
@@ -62,7 +62,8 @@ public class gamepanel extends JPanel {
     }
 
     private void setnextshape() {
-         nextshapeshow.setcolorandshape(allshapesx[nextshape][rotation],allshapesy[nextshape][rotation],nextshapeColor);
+        System.out.println(nextshapeColor);
+         nextshapeshow.setcolorandshape(allshapesx[nextshape][rotation],allshapesy[nextshape][rotation],nextshapeColor,nextshape);
     }
 
     private void setshape() {
@@ -141,12 +142,12 @@ public class gamepanel extends JPanel {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            System.out.println("running");
+            // System.out.println("running");
             if (move) {
                 moveshape();
             }
 
-            System.out.println("running");
+            // System.out.println("running");
 
             if (move == false) {
                 remove=true;
