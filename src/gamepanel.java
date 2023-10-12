@@ -3,15 +3,15 @@ import java.awt.Graphics;
 import java.util.Random;
 import java.util.Vector;
 
-
 import javax.swing.JPanel;
 
 public class gamepanel extends JPanel {
 
-    private Color allcolor[][] = new Color[20][10], owncolor,nextshapeColor;
+    private Color allcolor[][] = new Color[20][10], owncolor, nextshapeColor;
     // private Color sblock[][] = { { null, Color.red, Color.red, null },
     // { Color.red, Color.red, null, null },
-    // { null, null, null, null } };
+    // { null, null, null, null } };.
+    public Color allcolornextshape[][] = new Color[4][4];
     public nextshapepanel nextshapeshow;
     Random r = new Random();
 
@@ -37,9 +37,10 @@ public class gamepanel extends JPanel {
 
     private int sblockx[] = new int[4], sblocky[] = new int[4];
     // private int sblockx[] = { 4, 5, 3, 4 }, sblocky[] = { 0, 0, 1, 1 };
-    private boolean move = true, lose,remove=true;
+    private boolean move = true, lose, remove = true;
+    public boolean repaintnext = false;
     private int nowshape, nextshape, difofx = 0;
-    public int rotation = 0, beforeroatation, maxy,score,speed=500;
+    public int rotation = 0, beforeroatation, maxy, score, speed = 500;
 
     // ArrayList<Integer> sblocky = new ArrayList<Integer>(2);
     // ArrayList<Integer> sblockx = new ArrayList<Integer>(4);
@@ -47,23 +48,24 @@ public class gamepanel extends JPanel {
     public gamepanel() {
         nextshapeshow = new nextshapepanel(new controlpanel());
         nowshape = r.nextInt(0, 7);
-        nextshape= r.nextInt(0, 7);
-        
+        nextshape = r.nextInt(0, 7);
+
         owncolor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
         nextshapeColor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
-        
+
         setnextshape();
-        
+
         initialpanelcolor();
         setshape();
         setcolorsarray();
-        setBounds(0, 0, 400, 600);
+        setBounds(0, 0, 600, 600);
         setBackground(Color.black);
     }
 
     private void setnextshape() {
         System.out.println(nextshapeColor);
-         nextshapeshow.setcolorandshape(allshapesx[nextshape][rotation],allshapesy[nextshape][rotation],nextshapeColor,nextshape);
+        nextshapeshow.setcolorandshape(allshapesx[nextshape][0], allshapesy[nextshape][0], nextshapeColor,
+                nextshape, this);
     }
 
     private void setshape() {
@@ -119,17 +121,48 @@ public class gamepanel extends JPanel {
         // TODO Auto-generated method stub
         super.paintComponent(g);
 
+        g.fillRect(401, 0, 199, 600);
+        g.setColor(Color.white);
+        g.drawRect(420, 20, 160, 160);
+
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 10; j++) {
 
-                
                 g.setColor(allcolor[i][j]);
                 g.fillRect(j * 40, i * 40, 40, 40);
-                if(allcolor[i][j]!=Color.black){
+                if (allcolor[i][j] != Color.black) {
                     g.setColor(Color.WHITE);
                     g.drawRect(j * 40, i * 40, 40, 40);
                 }
             }
+        }
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                g.setColor(allcolornextshape[i][j]);
+                g.fillRect((j * 40) + 420, (i * 40) + 20, 40, 40); // g.setColor(Color.orange);
+                // g.drawRect(i*40, j*40, 40, 40);
+                if (allcolornextshape[i][j] != Color.black) {
+                    g.setColor(Color.WHITE);
+                    g.drawRect((j * 40) + 420, (i * 40) + 20, 40, 40); // g.setColor(Color.orange);
+                }
+            }
+        }
+
+        if (repaintnext) {
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+
+                    g.setColor(Color.black);
+                    g.fillRect((j * 40) + 420, (i * 40) + 20, 40, 40);
+
+                    // g.setColor(allcolornextshape[i][j]);
+                    // g.fillRect((j * 40) + 420, (i * 40) + 20, 40, 40);
+                    // g.setColor(Color.orange);
+                    // g.drawRect(i*40, j*40, 40, 40);
+                }
+            }
+            repaintnext = false;
         }
 
     }
@@ -150,13 +183,11 @@ public class gamepanel extends JPanel {
             // System.out.println("running");
 
             if (move == false) {
-                remove=true;
+                remove = true;
                 createblock();
             }
 
             setcolorsarray();
-
-
 
             repaint();
 
@@ -168,48 +199,47 @@ public class gamepanel extends JPanel {
         Vector<Integer> listofcomplet = new Vector<Integer>();
 
         // for(int i = 14; i >0; i++){
-        //     for
+        // for
         // }
 
-        for(int i=14;i>=0;i--){
-            for(int j = 0; j<10; j++){
-                if(allcolor[i][j]!=Color.black){
-                    flag=true;
-                }else{
-                    flag= false;
+        for (int i = 14; i >= 0; i--) {
+            for (int j = 0; j < 10; j++) {
+                if (allcolor[i][j] != Color.black) {
+                    flag = true;
+                } else {
+                    flag = false;
                     break;
                 }
             }
-            if(flag){
+            if (flag) {
                 shiftblocks(i);
-                i=14;
+                i = 14;
             }
-            flag=false;
+            flag = false;
         }
         // for (Integer object : listofcomplet) {
-        //     shiftblocks(object);
+        // shiftblocks(object);
         // }
     }
-    
 
     private void shiftblocks(int start) {
-        for(int i = start; i>0; i--){
-            for(int j = 0; j<10; j++){
-                allcolor[i][j]=allcolor[i-1][j];
+        for (int i = start; i > 0; i--) {
+            for (int j = 0; j < 10; j++) {
+                allcolor[i][j] = allcolor[i - 1][j];
             }
         }
-        
-        score+=10;
+
+        score += 10;
     }
 
     private void createblock() {
 
-        nowshape=nextshape;
-        owncolor=nextshapeColor;
+        nowshape = nextshape;
+        owncolor = nextshapeColor;
 
         checkScore();
         for (int i = 0; i < 4; i++) {
-            if (sblocky[i] == allshapesy[nowshape][rotation][i] && allcolor[sblocky[i]][sblockx[i]] != Color.black ) {
+            if (sblocky[i] == allshapesy[nowshape][rotation][i] && allcolor[sblocky[i]][sblockx[i]] != Color.black) {
                 lose = true;
             } else {
                 lose = false;
@@ -256,11 +286,11 @@ public class gamepanel extends JPanel {
     }
 
     private void clearpreviousshape() {
-        if(remove){
+        if (remove) {
             for (int i = 0; i < 4; i++) {
                 allcolor[sblocky[i]][sblockx[i]] = Color.black;
             }
-            
+
         }
 
     }
@@ -278,8 +308,8 @@ public class gamepanel extends JPanel {
                     && allcolor[sblocky[i] + 1][sblockx[i]] != owncolor) {
                 move = false;
                 lose = false;
-                remove=false;
-                speed=500;
+                remove = false;
+                speed = 500;
             }
             // else{
             // move=true;
@@ -299,9 +329,9 @@ public class gamepanel extends JPanel {
         difofx = smallestone(sblockx) - allshapesx[nowshape][rotation][4];
         clearpreviousshape();
         // if (biggestone(sblockx) < 9) {
-        //     for (int i = 0; i < 4; i++) {
-        //         sblockx[i] += 1;
-        //     }
+        // for (int i = 0; i < 4; i++) {
+        // sblockx[i] += 1;
+        // }
         // }
         if (biggestone(sblockx) < 9 && checkthenextposition(1)) {
             for (int i = 0; i < 4; i++) {
@@ -337,12 +367,13 @@ public class gamepanel extends JPanel {
 
     private boolean checkthenextposition(int op) {
         boolean flag = true;
-            for(int i = 0; i < 4; i++){
-                if(allcolor[sblocky[i]][sblockx[i]+op]!=Color.black && allcolor[sblocky[i]][sblockx[i]-1]!=owncolor){
-                    flag=false;
-                    System.out.println("broke");
-                }
+        for (int i = 0; i < 4; i++) {
+            if (allcolor[sblocky[i]][sblockx[i] + op] != Color.black
+                    && allcolor[sblocky[i]][sblockx[i] - 1] != owncolor) {
+                flag = false;
+                System.out.println("broke");
             }
+        }
         return flag;
     }
 

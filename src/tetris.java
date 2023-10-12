@@ -33,7 +33,7 @@ public class tetris implements KeyListener {
         controls = new controlpanel();
         System.out.println("setpanels 1");
 
-        f.add(controls);
+        // f.add(controls);
         f.add(game);
         // f.getContentPane().add(controls);
         // f.getContentPane().add(game);

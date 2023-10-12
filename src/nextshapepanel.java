@@ -46,10 +46,11 @@ public class nextshapepanel extends JPanel{
                 // g.drawRect(i*40, j*40, 40, 40);
             }
         }
+        System.out.println("painted in next shape");
 
     }
 
-    public void setcolorandshape(int shapex[],int shapey[],Color c,int shape) {
+    public void setcolorandshape(int shapex[],int shapey[],Color c,int shape,gamepanel gp) {
 
         System.out.println("shape : "+shape);
         System.out.println("color: "+c);
@@ -57,16 +58,21 @@ public class nextshapepanel extends JPanel{
         // setcolortodefault();
         
         for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+               gp.allcolornextshape[i][j]=Color.black;
+            }
+        }
+
+        for(int i = 0; i < 4; i++){
 
             System.out.print(shapex[i]);
             System.out.println(shapey[i]);
 
-            allcolor[shapey[i]][shapex[i]-3]=c;
-
-
+            gp.allcolornextshape[shapey[i]][shapex[i]-3]=c;
 
         }
-        repaint();
-        cpp.repaint();
+        gp.repaintnext=true;
+        // cpp.repaint();
+        // gp.repaint();
     }
 }
