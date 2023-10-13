@@ -26,10 +26,7 @@ public class controlpanel {
         gp.exitbutton = new JButton(exiticon);
         gp.exitbutton.setBounds(417, 320  , 167, 40);
 
-        gp.newgame.addActionListener(t);
-        gp.pause.addActionListener(t);
-        gp.resume.addActionListener(t);
-        gp.exitbutton.addActionListener(t);
+
 
         gp.add(gp.newgame);
         gp.add(gp.pause);

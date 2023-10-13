@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-public class tetris implements KeyListener, ActionListener{
+public class tetris implements  ActionListener,KeyListener{
     private JFrame f;
     private gamepanel game;
     private controlpanel controls;
@@ -21,9 +21,13 @@ public class tetris implements KeyListener, ActionListener{
         f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         System.out.println("yess 2");
-        f.addKeyListener(this);
         System.out.println("yess 3");
         setpanels();
+        game.newgame.addActionListener(this);
+        game.pause.addActionListener(this);
+        game.resume.addActionListener(this);
+        game.exitbutton.addActionListener(this);
+        f.addKeyListener(this);
         System.out.println("yess 4");
         f.setVisible(true);
         game.gameloop();
@@ -33,6 +37,8 @@ public class tetris implements KeyListener, ActionListener{
         
         game = new gamepanel(this);
         System.out.println("setpanels 1");
+        game.setFocusable(true);
+        game.requestFocusInWindow();
 
         // f.add(controls);
         f.add(game);
@@ -52,6 +58,7 @@ public class tetris implements KeyListener, ActionListener{
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
+        System.out.println("keypressed");
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
 
