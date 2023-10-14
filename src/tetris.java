@@ -101,7 +101,10 @@ public class tetris implements KeyListener, ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==game.newgame){
-            game=new gamepanel(this);
+            // game.sblockx= new int[4];
+            // game.sblocky= new int[4];
+
+            // game = new gamepanel(this);
         }
         else if(e.getSource()==game.pause){
             game.pausegame=true;

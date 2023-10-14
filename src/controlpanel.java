@@ -5,11 +5,12 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class controlpanel {
 
     public gamepanel gp;
-    private int buttony=400;
+    private int buttony=300;
 
     public controlpanel(gamepanel gp,tetris t){
         this.gp=gp;
@@ -31,22 +32,22 @@ public class controlpanel {
         gp.exitbutton = new JButton(exiticon);
         gp.exitbutton.setBounds(417, buttony +120 , 167, 40);
 
-        gp.scoreview= new JLabel("Hello world");
+        gp.scoreview= new JLabel("Score : "+gp.score);
         gp.scoreview.setBounds(420, 200, 160, 100);
-        // gp.scoreview.setFont(new Font("Arcadia", buttony, buttony));
-        gp.scoreview.setBackground(Color.black);
+        // gp.scoreview.setFont(new Font("Arcadia", , buttony));buttony
+        // gp.scoreview.setBackground(Color.black);
+        gp.scoreview.setFont(new Font("Monospaced", Font.PLAIN, 20));
+        // gp.scoreview.setVerticalAlignment(SwingConstants.CENTER);
+        // gp.scoreview.setHorizontalAlignment(SwingConstants.CENTER);
+        // gp.scoreview.setFont(new );
+        gp.scoreview.setForeground(Color.white);
 
         gp.add(gp.scoreview);
         gp.add(gp.newgame);
         gp.add(gp.pause);
         gp.add(gp.exitbutton);
         gp.add(gp.resume);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        
 
     } 
 

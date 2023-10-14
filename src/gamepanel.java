@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class gamepanel extends JPanel {
 
-    private int score=0;
+    public int score=0;
     private Color allcolor[][] = new Color[20][10], owncolor, nextshapeColor;
     // private Color sblock[][] = { { null, Color.red, Color.red, null },
     // { Color.red, Color.red, null, null },
@@ -42,7 +42,7 @@ public class gamepanel extends JPanel {
                     { { 0, 1, 1, 1 }, { 0, 1, 1, 2 }, { 0, 0, 0, 1 }, { 0, 1, 1, 2 } }
             };
 
-    private int sblockx[] = new int[4], sblocky[] = new int[4];
+    public int sblockx[] = new int[4], sblocky[] = new int[4];
     // private int sblockx[] = { 4, 5, 3, 4 }, sblocky[] = { 0, 0, 1, 1 };
     private boolean move = true, lose, remove = true;
     public boolean repaintnext = false, pausegame = false;
@@ -118,7 +118,7 @@ public class gamepanel extends JPanel {
 
     }
 
-    private void initialpanelcolor() {
+    public void initialpanelcolor() {
 
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 10; j++) {
@@ -239,6 +239,7 @@ public class gamepanel extends JPanel {
         // for (Integer object : listofcomplet) {
         // shiftblocks(object);
         // }
+        scoreview.setText("Score : "+score);
     }
 
     private void shiftblocks(int start) {
@@ -249,7 +250,7 @@ public class gamepanel extends JPanel {
         }
 
         score += 10;
-        System.out.println("Score: "+score);
+        
     }
 
     private void createblock() {
@@ -266,7 +267,7 @@ public class gamepanel extends JPanel {
             }
         }
         if (lose) {
-            System.exit(0);
+            //you lost
         }
 
         nextshapeColor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
