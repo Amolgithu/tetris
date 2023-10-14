@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-public class tetris implements  ActionListener,KeyListener{
+public class tetris implements KeyListener, ActionListener{
     private JFrame f;
     private gamepanel game;
     private controlpanel controls;
@@ -23,11 +23,15 @@ public class tetris implements  ActionListener,KeyListener{
         System.out.println("yess 2");
         System.out.println("yess 3");
         setpanels();
+        f.setContentPane(game);
+        f.setFocusable(true);
         game.newgame.addActionListener(this);
         game.pause.addActionListener(this);
         game.resume.addActionListener(this);
         game.exitbutton.addActionListener(this);
         f.addKeyListener(this);
+
+
         System.out.println("yess 4");
         f.setVisible(true);
         game.gameloop();
@@ -38,7 +42,7 @@ public class tetris implements  ActionListener,KeyListener{
         game = new gamepanel(this);
         System.out.println("setpanels 1");
         game.setFocusable(true);
-        game.requestFocusInWindow();
+        game.requestFocus();
 
         // f.add(controls);
         f.add(game);
@@ -58,7 +62,7 @@ public class tetris implements  ActionListener,KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
-        System.out.println("keypressed");
+        // System.out.println("keypressed");
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
 
@@ -67,7 +71,7 @@ public class tetris implements  ActionListener,KeyListener{
                 }
 
                 game.beforeroatation=game.rotation;
-                System.out.println("key pressed");
+                // System.out.println("key pressed");
                 if (game.rotation == 3) {
                     game.rotation = 0;
                 } else {
@@ -97,7 +101,7 @@ public class tetris implements  ActionListener,KeyListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==game.newgame){
-            game=new gamepanel(null);
+            game=new gamepanel(this);
         }
         else if(e.getSource()==game.pause){
             game.pausegame=true;
@@ -114,5 +118,8 @@ public class tetris implements  ActionListener,KeyListener{
         }
         else{
         }
+
+
+        f.requestFocus();
     }
 }

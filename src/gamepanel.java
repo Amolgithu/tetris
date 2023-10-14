@@ -4,10 +4,12 @@ import java.util.Random;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class gamepanel extends JPanel {
 
+    private int score=0;
     private Color allcolor[][] = new Color[20][10], owncolor, nextshapeColor;
     // private Color sblock[][] = { { null, Color.red, Color.red, null },
     // { Color.red, Color.red, null, null },
@@ -16,7 +18,9 @@ public class gamepanel extends JPanel {
     public nextshapepanel nextshapeshow;
     public controlpanel cp;
     Random r = new Random();
+
     public JButton newgame, pause, exitbutton, resume;
+    public JLabel scoreview;
 
     // private int[] differencex = new int[4], difference = new int[4];
     public int[][][] allshapesx = {
@@ -43,7 +47,7 @@ public class gamepanel extends JPanel {
     private boolean move = true, lose, remove = true;
     public boolean repaintnext = false, pausegame = false;
     private int nowshape, nextshape, difofx = 0;
-    public int rotation = 0, beforeroatation, maxy, score, speed = 500;
+    public int rotation = 0, beforeroatation, maxy, speed = 500;
     public tetris t;
 
     // ArrayList<Integer> sblocky = new ArrayList<Integer>(2);
@@ -125,6 +129,7 @@ public class gamepanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+
         // TODO Auto-generated method stub
         super.paintComponent(g);
 
@@ -244,6 +249,7 @@ public class gamepanel extends JPanel {
         }
 
         score += 10;
+        System.out.println("Score: "+score);
     }
 
     private void createblock() {

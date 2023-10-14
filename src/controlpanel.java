@@ -1,37 +1,52 @@
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class controlpanel {
 
     public gamepanel gp;
+    private int buttony=400;
 
     public controlpanel(gamepanel gp,tetris t){
         this.gp=gp;
 
         Icon newgameicon = new ImageIcon(t.getClass().getResource("/res/newgamebutton.png"));
         gp.newgame = new JButton(newgameicon);
-        gp.newgame.setBounds(417, 200  , 167, 40);
+        gp.newgame.setBounds(417, buttony  , 167, 40);
 
         Icon Pauseicon = new ImageIcon(t.getClass().getResource("/res/pausebutton.png"));
         gp.pause = new JButton(Pauseicon);
-        gp.pause.setBounds(417, 260  , 167, 40);
+        gp.pause.setBounds(417, buttony+60  , 167, 40);
         
         Icon resumeicon = new ImageIcon(t.getClass().getResource("/res/resumebutton.png"));
         gp.resume = new JButton(resumeicon);
-        gp.resume.setBounds(417, 260  , 167, 40);
+        gp.resume.setBounds(417, buttony+60  , 167, 40);
         gp.resume.setVisible(false);
 
         Icon exiticon = new ImageIcon(t.getClass().getResource("/res/exitbutton.png"));
         gp.exitbutton = new JButton(exiticon);
-        gp.exitbutton.setBounds(417, 320  , 167, 40);
+        gp.exitbutton.setBounds(417, buttony +120 , 167, 40);
 
+        gp.scoreview= new JLabel("Hello world");
+        gp.scoreview.setBounds(420, 200, 160, 100);
+        // gp.scoreview.setFont(new Font("Arcadia", buttony, buttony));
+        gp.scoreview.setBackground(Color.black);
 
-
+        gp.add(gp.scoreview);
         gp.add(gp.newgame);
         gp.add(gp.pause);
         gp.add(gp.exitbutton);
         gp.add(gp.resume);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     } 
 
