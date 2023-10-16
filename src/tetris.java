@@ -105,6 +105,10 @@ public class tetris implements KeyListener, ActionListener{
             // game.sblocky= new int[4];
 
             // game = new gamepanel(this);
+            game.lose=false;
+            game.startinggamefromfirst();
+            game.youlose.setVisible(false);
+
         }
         else if(e.getSource()==game.pause){
             game.pausegame=true;

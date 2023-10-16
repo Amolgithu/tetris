@@ -41,7 +41,15 @@ public class controlpanel {
         // gp.scoreview.setHorizontalAlignment(SwingConstants.CENTER);
         // gp.scoreview.setFont(new );
         gp.scoreview.setForeground(Color.white);
+        
+        gp.youlose.setFont(new Font("Monospaced", Font.PLAIN, 20));
+        gp.youlose.setHorizontalAlignment(SwingConstants.CENTER);
+        gp.youlose.setBounds(0, 275, 400, 50);
+        gp.youlose.setForeground(Color.white);
+        gp.youlose.setVisible(false);
 
+
+        gp.add(gp.youlose);
         gp.add(gp.scoreview);
         gp.add(gp.newgame);
         gp.add(gp.pause);

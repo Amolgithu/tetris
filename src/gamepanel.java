@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,7 +19,7 @@ public class gamepanel extends JPanel {
     Random r = new Random();
 
     public JButton newgame, pause, exitbutton, resume;
-    public JLabel scoreview;
+    public JLabel scoreview,youlose= new JLabel("You Lose");
 
     // private int[] differencex = new int[4], difference = new int[4];
     public int[][][] allshapesx = {
@@ -44,8 +43,8 @@ public class gamepanel extends JPanel {
 
     public int sblockx[] = new int[4], sblocky[] = new int[4];
     // private int sblockx[] = { 4, 5, 3, 4 }, sblocky[] = { 0, 0, 1, 1 };
-    private boolean move = true, lose, remove = true;
-    public boolean repaintnext = false, pausegame = false;
+    private boolean move = true, remove = true;
+    public boolean repaintnext = false, pausegame = false,running=true,lose;
     private int nowshape, nextshape, difofx = 0;
     public int rotation = 0, beforeroatation, maxy, speed = 500;
     public tetris t;
@@ -66,6 +65,7 @@ public class gamepanel extends JPanel {
         setnextshape();
 
         initialpanelcolor();
+        createblock();
         setshape();
         setcolorsarray();
         setLayout(null);
@@ -89,7 +89,6 @@ public class gamepanel extends JPanel {
     public void rotateshape() {
         int topdiffscreen = sblocky[0] - allshapesy[nowshape][beforeroatation][0];
 
-        int previous[] = new int[4];
         boolean flag = false;
 
         System.out.println(rotation);
@@ -181,27 +180,30 @@ public class gamepanel extends JPanel {
 
     public void gameloop() {
         while (true) {
-            try {
-                Thread.sleep(speed);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            System.out.println("running");
+            if(running){
+                try {
+                    Thread.sleep(speed);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                // System.out.println("running");
+                if (move) {
+                    moveshape();
+                }
+    
+                // System.out.println("running");
+    
+                if (move == false) {
+                    remove = true;
+                    createblock();
+                }
+    
+                setcolorsarray();
+    
+                redraw();
             }
-            // System.out.println("running");
-            if (move) {
-                moveshape();
-            }
-
-            // System.out.println("running");
-
-            if (move == false) {
-                remove = true;
-                createblock();
-            }
-
-            setcolorsarray();
-
-            redraw();
 
         }
     }
@@ -267,7 +269,8 @@ public class gamepanel extends JPanel {
             }
         }
         if (lose) {
-            //you lost
+            youlose.setVisible(true);
+            running=false;
         }
 
         nextshapeColor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
@@ -391,7 +394,7 @@ public class gamepanel extends JPanel {
         boolean flag = true;
         for (int i = 0; i < 4; i++) {
             if (allcolor[sblocky[i]][sblockx[i] + op] != Color.black
-                    && allcolor[sblocky[i]][sblockx[i] - 1] != owncolor) {
+                    && allcolor[sblocky[i]][sblockx[i] + op] != owncolor) {
                 flag = false;
                 System.out.println("broke");
             }
@@ -399,17 +402,41 @@ public class gamepanel extends JPanel {
         return flag;
     }
 
-    private boolean checkbounds(int[] x, int[] y) {
-        boolean flag = false;
-        for (int i = 0; i < 4; i++) {
-            if (allcolor[x[i]][y[i]] == Color.BLACK) {
-                flag = true;
-            } else {
-                flag = false;
-            }
-        }
+    // private boolean checkbounds(int[] x, int[] y) {
+    //     boolean flag = false;
+    //     for (int i = 0; i < 4; i++) {
+    //         if (allcolor[x[i]][y[i]] == Color.BLACK) {
+    //             flag = true;
+    //         } else {
+    //             flag = false;
+    //         }
+    //     }
 
-        return flag;
+    //     return flag;
+    // }
+
+    public void startinggamefromfirst() {
+         running=true;
+         remove=true;
+         move=true;
+         repaintnext = false;
+         pausegame = false;
+
+        nowshape = r.nextInt(0, 7);
+        nextshape = r.nextInt(0, 7);
+        score=0;      
+
+        owncolor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
+        nextshapeColor = new Color(r.nextInt(0, 255), r.nextInt(0, 255), r.nextInt(0, 255));
+        initialpanelcolor();
+
+        setnextshape();
+
+        createblock();
+        setshape();
+        setcolorsarray();
+        
+        resume.doClick(1);
     }
 
 }
