@@ -10,9 +10,6 @@ public class gamepanel extends JPanel {
 
     public int score=0;
     private Color allcolor[][] = new Color[20][10], owncolor, nextshapeColor;
-    // private Color sblock[][] = { { null, Color.red, Color.red, null },
-    // { Color.red, Color.red, null, null },
-    // { null, null, null, null } };.
     public Color allcolornextshape[][] = new Color[4][4];
     public nextshapepanel nextshapeshow;
     public controlpanel cp;
@@ -21,7 +18,6 @@ public class gamepanel extends JPanel {
     public JButton newgame, pause, exitbutton, resume;
     public JLabel scoreview,youlose= new JLabel("You Lose");
 
-    // private int[] differencex = new int[4], difference = new int[4];
     public int[][][] allshapesx = {
             { { 4, 5, 4, 5, 4 }, { 4, 5, 4, 5, 4 }, { 4, 5, 4, 5, 4 }, { 4, 5, 4, 5, 4 } },
             { { 3, 4, 5, 6, 3 }, { 4, 4, 4, 4, 4 }, { 3, 4, 5, 6, 3 }, { 4, 4, 4, 4, 4 } },
@@ -42,15 +38,11 @@ public class gamepanel extends JPanel {
             };
 
     public int sblockx[] = new int[4], sblocky[] = new int[4];
-    // private int sblockx[] = { 4, 5, 3, 4 }, sblocky[] = { 0, 0, 1, 1 };
     private boolean move = true, remove = true;
     public boolean repaintnext = false, pausegame = false,running=true,lose;
     private int nowshape, nextshape, difofx = 0;
     public int rotation = 0, beforeroatation, maxy, speed = 500;
     public tetris t;
-
-    // ArrayList<Integer> sblocky = new ArrayList<Integer>(2);
-    // ArrayList<Integer> sblockx = new ArrayList<Integer>(4);
 
     public gamepanel(tetris t) {
         this.t = t;

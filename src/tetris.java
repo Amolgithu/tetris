@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 public class tetris implements KeyListener, ActionListener{
     private JFrame f;
     private gamepanel game;
-    private controlpanel controls;
+
 
     public tetris() {
         System.out.println("yess 1");
@@ -44,10 +44,9 @@ public class tetris implements KeyListener, ActionListener{
         game.setFocusable(true);
         game.requestFocus();
 
-        // f.add(controls);
+
         f.add(game);
-        // f.getContentPane().add(controls);
-        // f.getContentPane().add(game);
+
     }
 
     public static void main(String[] args) {
