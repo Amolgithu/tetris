@@ -42,10 +42,10 @@ public class controlpanel {
         // gp.scoreview.setFont(new );
         gp.scoreview.setForeground(Color.white);
         
-        gp.youlose.setFont(new Font("Monospaced", Font.PLAIN, 20));
+        gp.youlose.setFont(new Font("Monospaced", Font.BOLD, 50));
         gp.youlose.setHorizontalAlignment(SwingConstants.CENTER);
         gp.youlose.setBounds(0, 275, 400, 50);
-        gp.youlose.setForeground(Color.white);
+        gp.youlose.setForeground(Color.gray);
         gp.youlose.setVisible(false);
 
 
