@@ -88,7 +88,7 @@ public class gamepanel extends JPanel {
 
         for (int i = 0; i < 4; i++) {
             if (allcolor[allshapesy[nowshape][rotation][i] + topdiffscreen][allshapesx[nowshape][rotation][i]
-                    + difofx] == Color.BLACK) {
+                    + difofx] == Color.black) {
                 flag = true;
             } else {
                 flag = false;
@@ -133,9 +133,10 @@ public class gamepanel extends JPanel {
 
                 g.setColor(allcolor[i][j]);
                 g.fillRect(j * 40, i * 40, 40, 40);
+                g.setColor(Color.WHITE);
+                g.drawRect(j * 40, i * 40, 40, 40);
                 if (allcolor[i][j] != Color.black) {
                     g.setColor(Color.WHITE);
-                    g.drawRect(j * 40, i * 40, 40, 40);
                 }
             }
         }
@@ -172,8 +173,8 @@ public class gamepanel extends JPanel {
 
     public void gameloop() {
         while (true) {
-            System.out.println("running");
             if(running){
+                System.out.println("running");
                 try {
                     Thread.sleep(speed);
                 } catch (InterruptedException e) {
@@ -254,7 +255,7 @@ public class gamepanel extends JPanel {
 
         checkScore();
         for (int i = 0; i < 4; i++) {
-            if (sblocky[i] == allshapesy[nowshape][rotation][i] && allcolor[sblocky[i]][sblockx[i]] != Color.black) {
+            if (sblocky[i] == allshapesy[nowshape][rotation][i] && allcolor[sblocky[i]][sblockx[i]] != Color.red) {
                 lose = true;
             } else {
                 lose = false;
@@ -397,7 +398,7 @@ public class gamepanel extends JPanel {
     // private boolean checkbounds(int[] x, int[] y) {
     //     boolean flag = false;
     //     for (int i = 0; i < 4; i++) {
-    //         if (allcolor[x[i]][y[i]] == Color.BLACK) {
+    //         if (allcolor[x[i]][y[i]] == Color.black) {
     //             flag = true;
     //         } else {
     //             flag = false;

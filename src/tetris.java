@@ -50,6 +50,7 @@ public class tetris implements KeyListener, ActionListener{
     }
 
     public static void main(String[] args) {
+        System.out.println("yesss");
         tetris t =new tetris();
     }
 
@@ -64,6 +65,7 @@ public class tetris implements KeyListener, ActionListener{
         // System.out.println("keypressed");
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
 
                 if(game.maxy == 12){
                     break;
@@ -79,12 +81,15 @@ public class tetris implements KeyListener, ActionListener{
                 game.rotateshape();
                 break;
             case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
                 game.moveright();
                 break;
             case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
                 game.moveleft();
                 break;
             case KeyEvent.VK_SPACE:
+            case KeyEvent.VK_DOWN:
                 game.speed=100;
                 break;
             default:
