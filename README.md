@@ -57,20 +57,24 @@ Tetris/
 
 
 
-## 📸 Screenshots
-### Customally Buttons
 
-![Gameplay](res/exitbutton.png)
-🎯 Highlights
-Built 100% with Java AWT & Swing
+## 🎨 Customally Designed Buttons
 
-No dependencies — completely portable!
+## ![Exit Button](src/res/exitbutton.png)
+## ![Resume Button](src/res/resumebutton.png)
+## ![Pause Button](src/res/pausebutton.png)
+## ![NewGame Button](src/res/newgamebutton.png)
 
-Designed for learning, demonstration, or customization
+## 🎯 Highlights
+* Built 100% with Java AWT & Swing
 
-Clean, modular code for easy expansion
+* No dependencies — completely portable!
 
-🧠 Future Improvements (Ideas)
+* Designed for learning, demonstration, or customization
+
+* Clean, modular code for easy expansion
+
+## 🧠 Future Improvements (Ideas)
 ✅ Sound effects
 
 ✅ High score system
@@ -81,22 +85,9 @@ Clean, modular code for easy expansion
 
 ✅ Difficulty levels
 
-🙋‍♂️ Author
-Created by [Your Name]
-Feel free to contribute or fork the project!
+## 🙋‍♂️ Author
+Created by Amol Arde (A coding freak but still struggling 😅😅)
 
-📝 License
-This project is open-source and available under the MIT License.
 
-yaml
-Copy
-Edit
-
----
-
-Let me know if you'd like:
-- A version **with screenshots already added**
-- A **fancier design** using markdown shields/badges
-- Or a version that assumes this project is on GitHub
-
-Want me to put this in a downloadable `.md` file or display it in a canvas?
+## 📝 License
+Originally made by me Line by Line 😅😁
