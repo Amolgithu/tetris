@@ -60,7 +60,7 @@ Tetris/
 ## 📸 Screenshots
 ### Customally Buttons
 
-![Gameplay](res/exitbutton.png)
+![Gameplay](src/res/exitbutton.png)
 🎯 Highlights
 Built 100% with Java AWT & Swing
 
