@@ -51,6 +51,7 @@ public class tetris implements KeyListener, ActionListener{
 
     public static void main(String[] args) {
         System.out.println("yesss");
+        System.out.println("yesss");
         tetris t =new tetris();
     }
 
