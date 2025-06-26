@@ -58,7 +58,7 @@ Tetris/
 
 
 
-## 🎨 Customally Designed Buttons
+## 🎨 Customly Designed Buttons
 
 ## ![Exit Button](src/res/exitbutton.png)
 ## ![Resume Button](src/res/resumebutton.png)
